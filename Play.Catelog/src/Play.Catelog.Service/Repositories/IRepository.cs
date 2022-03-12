@@ -5,13 +5,13 @@ using Play.Catelog.Service.Entities;
 
 namespace Play.Catelog.Service.Repositories
 {
-    public interface IItemsRepository
+    public interface IRepository<T> where T : IEntity
     {
-        Task CreateAsync(Item entity);
+        Task CreateAsync(T entity);
         Task DeleteAsync(Guid id);
-        Task<IReadOnlyCollection<Item>> GetAllAsync();
-        Task<Item> GetAsync(Guid id);
-        Task UpdateAsync(Item entity);
+        Task<IReadOnlyCollection<T>> GetAllAsync();
+        Task<T> GetAsync(Guid id);
+        Task UpdateAsync(T entity);
     }
 
 }
