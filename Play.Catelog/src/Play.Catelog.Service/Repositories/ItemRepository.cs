@@ -6,17 +6,16 @@ using Play.Catelog.Service.Entities;
 
 namespace Play.Catelog.Service.Repositories
 {
-    public class ItemsRepository
+
+    public class ItemsRepository : IItemsRepository
     {
         public const string collectionName = "items";
         private readonly IMongoCollection<Item> dbCollection;
 
         private readonly FilterDefinitionBuilder<Item> filterBuilder = Builders<Item>.Filter;
 
-        public ItemsRepository()
+        public ItemsRepository(IMongoDatabase database)
         {
-            var mongoClient = new MongoClient("mongodb://localhost:27017");
-            var database = mongoClient.GetDatabase("Catelog");
             dbCollection = database.GetCollection<Item>(collectionName);
         }
 
